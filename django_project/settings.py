@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import os
 from dotenv import load_dotenv
+import os
+import django_heroku
 
 load_dotenv()
 
@@ -29,10 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.environ.get('DEBUG')) == "1"
 
-ALLOWED_HOSTS = []
-if not DEBUG:
-    # ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOST')]
-    ALLOWED_HOSTS += [os.environ.get('HEROKU_HOST')]
+ALLOWED_HOSTS = ['chen-django-blog.herokuapp.com']
 
 
 # Application definition
@@ -158,3 +156,5 @@ AWS_S3_REGION_NAME = "us-east-2"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+django_heroku.settings(locals())
