@@ -12,7 +12,7 @@ class Profile(models.Model):
 
 
     def save(self, *args, **kwargs):
-        super(Profile, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
         img = Image.open(self.image.path)
 
